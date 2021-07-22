@@ -12,7 +12,8 @@ struct HomeView: View {
     @EnvironmentObject var model: ContentModel
     
     var body: some View {
-        Text("Hello, world!")
+        
+        Text(String(model.modules[0].id))
             .padding()
     }
 }
@@ -20,5 +21,6 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
+            .environmentObject(ContentModel())
     }
 }
