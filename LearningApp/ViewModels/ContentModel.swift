@@ -22,6 +22,8 @@ class ContentModel: ObservableObject {
     
     var styleData: Data?
     
+    @Published var lessonDescription = NSAttributedString()
+    
     init() {
         
         getLocalData()
@@ -91,6 +93,8 @@ class ContentModel: ObservableObject {
         }
         
         currentLesson = currentModule!.content.lessons[currentLessonIndex]
+        
+        lessonDescription = addStyling(currentLesson!.explanation)
     }
     
     func hasNextLesson() -> Bool {
@@ -105,6 +109,8 @@ class ContentModel: ObservableObject {
         if currentLessonIndex < currentModule!.content.lessons.count {
             
             currentLesson = currentModule!.content.lessons[currentLessonIndex]
+            
+            lessonDescription = addStyling(currentLesson!.explanation)
         }
         else {
             
@@ -112,5 +118,48 @@ class ContentModel: ObservableObject {
             
             currentLesson = nil
         }
+    }
+    
+    // MARK: Code Styling
+    
+    private func addStyling(_ htmlString: String) -> NSAttributedString {
+        
+        var resultString = NSAttributedString()
+        var data = Data()
+        
+        // Add style data
+        if styleData != nil {
+            
+            data.append(styleData!)
+            
+        }
+        
+        // Add html data
+        data.append(Data(htmlString.utf8))
+        
+        // Convert to attributed string
+        // Approach 1
+        //        do {
+        //
+        //            let attributedString = try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+        //
+        //            resultString = attributedString
+        //
+        //        }
+        //        catch {
+        //
+        //            print("Can't convert html to attributed string")
+        //
+        //        }
+        
+        //Approach 2
+        if let attributedString = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
+            
+            resultString = attributedString
+            
+        }
+        
+        return resultString
+        
     }
 }

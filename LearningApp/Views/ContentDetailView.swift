@@ -27,7 +27,7 @@ struct ContentDetailView: View {
             }
             
             //Description
-            
+            CodeTextView()
             
             //Next video button
             if model.hasNextLesson() {
@@ -54,6 +54,7 @@ struct ContentDetailView: View {
             }
         }
         .padding()
+        .navigationBarTitle(lesson?.title ?? "")
     }
 }
 
