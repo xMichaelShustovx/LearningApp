@@ -24,7 +24,7 @@ struct CodeTextView: UIViewRepresentable {
         
         //textView.text = "Testing"
         
-        textView.attributedText = model.lessonDescription
+        textView.attributedText = model.codeText
         
         textView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: false)
     }
