@@ -159,7 +159,7 @@ class ContentModel: ObservableObject {
             currentQuestionIndex = 0
             
             currentQuestion = nil
-            
+
         }
         
     }
