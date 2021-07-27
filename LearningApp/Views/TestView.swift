@@ -89,7 +89,7 @@ struct TestView: View {
                         submitted = false
                         
                         selectedAnswerIndex = nil
-                        
+
                     }
                     else {
                         submitted = true

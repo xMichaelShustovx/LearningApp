@@ -49,8 +49,8 @@ struct HomeView: View {
                                     destination:
                                         TestView()
                                         .onAppear(perform: {
-                                        model.beginTest(module.id)
-                                    }),
+                                                model.beginTest(module.id)                      
+                                        }),
                                     tag: module.id,
                                     selection: $model.currentTestSelected,
                                     label: {
@@ -63,6 +63,7 @@ struct HomeView: View {
                                     EmptyView()
                                 }
                             }
+                            //.padding(.bottom, 20)
                         }
                     }
                     .accentColor(.black)
