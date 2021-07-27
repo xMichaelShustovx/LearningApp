@@ -104,7 +104,11 @@ class ContentModel: ObservableObject {
                 
                 let modules = try decoder.decode([Module].self, from: data!)
                 
-                self.modules += modules
+                DispatchQueue.main.async {
+                    
+                    self.modules += modules
+                    
+                }
                 
             }
             catch {
@@ -112,7 +116,7 @@ class ContentModel: ObservableObject {
                 
                 
             }
-
+            
             
         }//.resume()
         
@@ -206,7 +210,7 @@ class ContentModel: ObservableObject {
             currentQuestionIndex = 0
             
             currentQuestion = nil
-
+            
         }
         
     }

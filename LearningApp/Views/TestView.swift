@@ -17,9 +17,11 @@ struct TestView: View {
     
     @State var submitted = false
     
+    @State var showResult = false
+    
     var body: some View {
         
-        if model.currentQuestion != nil {
+        if model.currentQuestion != nil && showResult == false {
             
             VStack(alignment: .leading) {
                 
@@ -84,6 +86,12 @@ struct TestView: View {
                     
                     if submitted {
                         
+                        if model.currentQuestionIndex == model.currentModule!.test.questions.count - 1 {
+                            
+                            showResult = true
+                            
+                        }
+                        
                         model.nextQuestion()
                         
                         submitted = false
@@ -116,9 +124,14 @@ struct TestView: View {
             }
             .navigationBarTitle("\(model.currentModule?.category ?? "") Test")
         }
-        else {
+        else if showResult == true {
             
             TestResultView(numCorrect: numCorrect)
+            
+        }
+        else {
+            
+            ProgressView()
             
         }
     }
