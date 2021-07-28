@@ -40,7 +40,7 @@ class ContentModel: ObservableObject {
         
     }
     
-    //MARK: Data methods
+    //MARK: - Data methods
     
     func getLocalData() {
         
@@ -124,13 +124,13 @@ class ContentModel: ObservableObject {
         
     }
     
-    //MARK: Module navigation methods
+    //MARK: - Module navigation methods
     
     func beginModule(_ moduleId: Int) {
         
         for index in 0..<modules.count {
             
-            if modules[index].id == index {
+            if modules[index].id == moduleId {
                 
                 currentModuleIndex = index
                 break
@@ -219,7 +219,7 @@ class ContentModel: ObservableObject {
         
     }
     
-    // MARK: Code Styling
+    // MARK: - Code Styling
     
     private func addStyling(_ htmlString: String) -> NSAttributedString {
         
